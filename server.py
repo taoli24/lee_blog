@@ -8,10 +8,16 @@ from flask_ckeditor import CKEditor
 from flask_gravatar import Gravatar
 import itertools
 import datetime as dt
-from constants import USER_NAME, PASSWORD
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 from functools import wraps
+import os
+from dotenv import load_dotenv
+
+load_dotenv('./vars/.env')
+secret_key = os.getenv('SECRET_KEY')
+USER_NAME = os.getenv('USER_NAME')
+PASSWORD = os.getenv('PASSWORD')
 
 app = Flask(__name__)
 Bootstrap5(app)

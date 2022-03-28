@@ -1,5 +1,7 @@
 /constants.py
 /post.db
+/vars
+
 
 # Created by https://www.toptal.com/developers/gitignore/api/flask
 # Edit at https://www.toptal.com/developers/gitignore?templates=flask
@@ -8,7 +10,7 @@
 instance/*
 !instance/.gitignore
 .webassets-cache
-.env
+vars/.env
 
 ### Flask.Python Stack ###
 # Byte-compiled / optimized / DLL files
@@ -125,9 +127,9 @@ celerybeat.pid
 
 # Environments
 .venv
-env/
+vars/
 venv/
-ENV/
+vars/
 env.bak/
 venv.bak/
 

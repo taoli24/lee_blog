@@ -1,0 +1,18 @@
+.comment {
+    margin: 40px 0;
+}
+
+.commenterImage img {
+    border-radius: 50%;
+}
+
+.commentText p{
+    margin: 0;
+}
+
+.commentText .sub-text {
+    font-size: 0.9rem;
+    font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    color: #6c757d;
+    font-style: italic;
+}

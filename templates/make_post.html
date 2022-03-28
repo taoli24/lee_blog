@@ -1,0 +1,32 @@
+{% from 'bootstrap/form.html' import render_form %}
+{% include "header.html" %}
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('https://images.unsplash.com/photo-1558021212-51b6ecfa0db9')">
+    {#    <div class="overlay"></div>#}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="page-heading">
+                    {% if edit %}
+                        <h1>Edit Post</h1>
+                    {% else %}
+                        <h1>New Post</h1>
+                    {% endif %}
+                    <span class="subheading">You're going to make a great blog post!</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            {{ ckeditor.load() }}
+            {{ ckeditor.config(name='a') }}
+            {{ render_form(form, novalidate=True) }}
+        </div>
+    </div>
+</div>
+
+{% include "footer.html" %}

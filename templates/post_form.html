@@ -1,0 +1,65 @@
+{% include "header.html" %}
+{% from 'bootstrap/form.html' import render_form %}
+<!-- Page Header-->
+<header class="masthead" style="/*noinspection CssUnknownTarget*/background-image: url('{{ post.image }}')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="post-heading">
+                    <h1>{{ post.title }}</h1>
+                    <h2 class="subheading">{{ post.subtitle }}</h2>
+                    <span class="meta">
+                                Posted by
+                                <a href="#!">{{ post.author.name }}</a>
+                                on {{ post.date }}
+                            </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Post Content-->
+<article class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p style="color: #bb2d3b; font-size: 1rem;">{{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <p>{{ post.body|safe }}</p>
+                {% if current_user.id == 1 %}
+                    <!-- Divider-->
+                    <hr class="my-4"/>
+                    <!-- Pager-->
+                    <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase"
+                                                                    href="{{ url_for('edit_post', post_id = post.id) }}">Edit
+                        This Post
+                    </a></div>
+                {% endif %}
+                <hr class="my-4"/>
+                {{ ckeditor.load() }}
+                {{ ckeditor.config(name='comment') }}
+                {{ render_form(form, novalidate=True) }}
+
+
+                {% for comment in post.comments %}
+                    <div class="row comment">
+                        <div class="commenterImage col-2">
+                            <img src="{{ comment.author.email | gravatar }}">
+                        </div>
+                        <div class="commentText col">
+                            {{ comment.text|safe }}
+                            <span class="date sub-text">{{ comment.author.name }}</span>
+                        </div>
+
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</article>
+{% include "footer.html" %}

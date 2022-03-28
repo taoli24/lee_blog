@@ -26,7 +26,7 @@ login_manager = LoginManager(app)
 api_end_point = 'https://api.npoint.io/0c739d27b0f3a1e8c51f#'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///post.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = 'thisissecret'
+app.config['SECRET_KEY'] = secret_key
 db = SQLAlchemy(app)
 gravatar = Gravatar(app,
                     size=50,
@@ -92,7 +92,7 @@ class Comment(db.Model):
 # response = requests.get(api_end_point)
 # post_data = response.json()
 #
-# db.create_all()
+db.create_all()
 
 
 #

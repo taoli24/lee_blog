@@ -17,16 +17,16 @@ import os
 # load_dotenv('./vars/.env')
 
 
-secret_key = os.getenv('SECRET_KEY')
-USER_NAME = os.getenv('USER_NAME')
-PASSWORD = os.getenv('PASSWORD')
+secret_key = os.environ.get('SECRET_KEY')
+USER_NAME = os.environ.get('USER_NAME')
+PASSWORD = os.environ.get('PASSWORD')
 
 app = Flask(__name__)
 Bootstrap5(app)
 CKEditor(app)
 login_manager = LoginManager(app)
 api_end_point = 'https://api.npoint.io/0c739d27b0f3a1e8c51f#'
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = secret_key
 db = SQLAlchemy(app)

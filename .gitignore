@@ -1,6 +1,4 @@
-/constants.py
-/post.db
-/vars
+
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/flask
@@ -17,6 +15,10 @@ vars/.env
 __pycache__/
 *.py[cod]
 *$py.class
+
+### Database ###
+*.db
+
 
 # C extensions
 *.so

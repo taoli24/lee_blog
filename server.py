@@ -12,9 +12,17 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 from functools import wraps
 import os
+import re
+
+
+# rest of connection code using the connection string `uri`
 # env variables set up in heroku, comment out below two lines before push to GitHub.
 # from dotenv import load_dotenv
 # load_dotenv('./vars/.env')
+
+uri = os.environ.get("DATABASE_URL")  # or other relevant config var
+if uri.startswith("postgres://"):
+    uri = uri.replace("postgres://", "postgresql://", 1)
 
 
 secret_key = os.environ.get('SECRET_KEY')
@@ -26,7 +34,7 @@ Bootstrap5(app)
 CKEditor(app)
 login_manager = LoginManager(app)
 api_end_point = 'https://api.npoint.io/0c739d27b0f3a1e8c51f#'
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+app.config['SQLALCHEMY_DATABASE_URI'] = uri
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = secret_key
 db = SQLAlchemy(app)

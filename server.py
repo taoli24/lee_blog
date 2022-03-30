@@ -12,10 +12,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 from functools import wraps
 import os
-import re
 
-
-# rest of connection code using the connection string `uri`
 # env variables set up in heroku, comment out below two lines before push to GitHub.
 # from dotenv import load_dotenv
 # load_dotenv('./vars/.env')
@@ -208,7 +205,7 @@ def edit_post(post_id):
         post_to_edit.body = edit_form.body.data
         db.session.commit()
 
-        return render_template('post_form.html', post=post_to_edit)
+        return redirect(url_for('post', post_num=post_id))
 
     return render_template('make_post.html', form=edit_form, edit=True, logged_in=current_user.is_authenticated)
 
